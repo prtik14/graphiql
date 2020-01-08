@@ -5,11 +5,12 @@
  *  LICENSE file in the root directory of this source tree.
  */
 
-import { getOperationAST, parse, introspectionQuery } from 'graphql';
+import { getOperationAST, parse, getIntrospectionQuery } from 'graphql';
 
 export { introspectionQuery } from 'graphql';
-export const introspectionQueryName = getOperationAST(parse(introspectionQuery))
-  .name.value;
+export const introspectionQueryName = getOperationAST(
+  parse(getIntrospectionQuery()),
+).name.value;
 
 // Some GraphQL services do not support subscriptions and fail an introspection
 // query which includes the `subscriptionType` field as the stock introspection
